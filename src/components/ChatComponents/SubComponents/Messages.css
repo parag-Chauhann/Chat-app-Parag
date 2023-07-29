@@ -1,0 +1,9 @@
+.messages {
+  padding: 10px;
+  height: 70vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* Add any other styles for the .messages container here */
+}

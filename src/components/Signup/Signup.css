@@ -1,0 +1,91 @@
+
+.signup{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    margin-top: 50px;
+   
+  
+  }
+  .signup-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .signup-container p{
+  
+      margin-top: 15px;
+      font: 12px;
+      max-width: 350px;
+  }
+    input {
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 350px;
+    }
+    
+             
+    .signup-btn{
+      background-image: linear-gradient(to right, #1FA2FF 0%, #12D8FA  51%, #1FA2FF  100%);
+      margin: 10px;
+      padding: 15px 45px;
+      text-align: center;
+      text-transform: uppercase;
+      transition: 0.5s;
+      background-size: 200% auto;
+      color: white;            
+      box-shadow: 0 0 20px #eee;
+      border-radius: 10px;
+      display: block;
+      font-size: larger;
+    }
+  
+    .signup-btn:hover {
+      background-position: right center; /* change the direction of the change here */
+      color: #fff;
+      text-decoration: none;
+    }
+  
+    .error-message {
+      color: red;
+      margin-top: 10px;
+    }
+
+    .profile-picture{
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items:center;
+    }
+
+    .profile-picture-img{
+      height: 60px;
+      margin: 5px;
+
+    }
+
+    
+    .profile-picture h4{
+      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-size: 17px;
+      color:#1FA2FF;
+    }

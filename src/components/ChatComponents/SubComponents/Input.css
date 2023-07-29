@@ -1,0 +1,43 @@
+.input{
+    height: 50px;
+    padding: 10px;
+    background-color:white;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    bottom: 0%;
+}
+
+.sendtext{
+    width: 100%;
+    border:none;
+    outline: none;
+    color:black;
+    font-size: 18px;
+}
+
+.send{
+    display: flex;
+    align-items:center;
+    gap:10px;
+}
+
+.input-icon{
+    height: 24px;
+    cursor:pointer;
+    
+}
+
+.send-btn{
+    border:none;
+    padding: 10px 15px;
+    color: white;
+    background-color:blue;
+    font-size: 11px;
+
+}
+
+.send-btn:hover{
+    background-color:rgb(78, 78, 214);
+    cursor: pointer;
+}
