@@ -85,7 +85,7 @@ const SignUp = () => {
             {loading ? "Signing up..." : "Sign up"}
           </button>
         </form>
-        {loading && <p>Uploading your profile picture the image, keep smiling...</p>}
+        {loading && <p>Uploading your profile picture the image, please wait...</p>}
         {err === "email-exists" && <p>Email address is already in use. Please use a different email.</p>}
         {err === "image-upload" && <p>Error uploading the profile picture. Please try again later.</p>}
         {err === "success" && <p>Sign up successful! Redirecting to the homepage...</p>}

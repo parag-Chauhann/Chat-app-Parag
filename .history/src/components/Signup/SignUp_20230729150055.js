@@ -7,7 +7,7 @@ import { useNavigate, Link } from "react-router-dom";
 import "./Signup.css";
 
 const SignUp = () => {
-  const [err, setErr] = useState(null);
+  const [err, setErr] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -20,22 +20,22 @@ const SignUp = () => {
     const file = e.target[3].files[0];
 
     try {
-      // Create user
+      //Create user
       const res = await createUserWithEmailAndPassword(auth, email, password);
 
-      // Create a unique image name
+      //Create a unique image name
       const date = new Date().getTime();
       const storageRef = ref(storage, `${displayName + date}`);
 
       await uploadBytesResumable(storageRef, file).then(() => {
         getDownloadURL(storageRef).then(async (downloadURL) => {
           try {
-            // Update profile
+            //Update profile
             await updateProfile(res.user, {
               displayName,
               photoURL: downloadURL,
             });
-            // Create user on firestore
+            //create user on firestore
             await setDoc(doc(db, "users", res.user.uid), {
               uid: res.user.uid,
               displayName,
@@ -43,25 +43,18 @@ const SignUp = () => {
               photoURL: downloadURL,
             });
 
-            // Create empty user chats on firestore
+            //create empty user chats on firestore
             await setDoc(doc(db, "userChats", res.user.uid), {});
-            setErr("success");
-            setLoading(false);
             navigate("/");
           } catch (err) {
             console.log(err);
-            setErr("image-upload");
+            setErr(true);
             setLoading(false);
           }
         });
       });
     } catch (err) {
-      console.log(err);
-      if (err.code === "auth/email-already-in-use") {
-        setErr("email-exists");
-      } else {
-        setErr("error");
-      }
+      setErr(true);
       setLoading(false);
     }
   };
@@ -69,29 +62,24 @@ const SignUp = () => {
   return (
     <div className="signup">
       <div className="signup-container">
-        <h2>Sign up</h2>
+      <h2>Sign up</h2>
         <form onSubmit={handleSubmit}>
           <input required type="text" placeholder="Username" />
           <input required type="email" placeholder="Email" />
           <input required type="password" placeholder="Password (Minimum 6 Characters)" />
           <input required style={{ display: "none" }} type="file" id="file" />
           <label htmlFor="file">
-            <div className="profile-picture">
+          <div className="profile-picture">
               <img className="profile-picture-img" src="https://cdn0.iconfinder.com/data/icons/user-interface-1-32/32/upload-photo-2-256.png" alt="" />
-              <h4>Upload your profile picture</h4>
+              <h4>Upload you profile picture</h4>
             </div>
           </label>
-          <button className="signup-btn" disabled={loading}>
-            {loading ? "Signing up..." : "Sign up"}
-          </button>
+          <button className="signup-btn" disabled={loading}>Sign up</button>
+          {loading && "Uploading and compressing the image please wait..."}
+          {err && <span>Something went wrong</span>}
         </form>
-        {loading && <p>Uploading your profile picture the image, keep smiling...</p>}
-        {err === "email-exists" && <p>Email address is already in use. Please use a different email.</p>}
-        {err === "image-upload" && <p>Error uploading the profile picture. Please try again later.</p>}
-        {err === "success" && <p>Sign up successful! Redirecting to the homepage...</p>}
-        {err === "error" && <p>Oops! Something went wrong during the sign-up process. Please try again.</p>}
         <p>
-          You already have an account? <Link to="/login">Login</Link>
+          You do have an account? <Link to="/login">Login</Link>
         </p>
       </div>
     </div>
