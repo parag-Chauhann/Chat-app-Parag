@@ -1,9 +1,4 @@
-* {
-        font-family: "Open Sans", sans-serif;
-        margin: 0;
-        overflow: hidden;
-    }
-
+.chats
 .userchat {
     padding: 10px;
     display: flex;
